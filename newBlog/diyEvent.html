@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>自定义事件</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <style>
+        html,body,#container{
+            height:100%;
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+<div id="container" tabindex="0"></div>
+<div class="input-card" style="width:18rem">
+    <h4>自定义事件的绑定与解绑</h4>
+    <div>
+      <div class="input-item">
+        <button id="bt1" class="btn" style="margin-right:1rem;">查询餐厅</button>
+        <button id="bt2" class="btn">解绑事件</button>
+      </div>
+    </div>
+</div>
+<div class="info" id="tip">
+    给地图绑定自定义的count事件，实现新增marker点的计数<br>
+    <span id="count">总共添加了0个Marker.</span>
+</div>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=f4e095be087630133e20de9ce76e2fa8"></script>
+<script type="text/javascript">
+	//加载地图
+
+
+    
+    
+
+    var count = 0, clickListener;  //定义计数变量count，点击监听对象click
+
+    var search = function() {
+
+    var map = new AMap.Map('container', {
+        zoom:15.4,//缩放级别，数值越大则比例尺越大
+        center: [117.1445210000, 34.2151070000],//中心点坐标 中国矿业大学南湖校区
+        viewMode:'3D'//使用3D视图
+        ,resizeEnable: true
+    });
+
+    AMap.service(["AMap.PlaceSearch"], function() {
+        var placeSearch = new AMap.PlaceSearch({ //构造地点查询类
+            pageSize: 5, // 单页显示结果条数
+            pageIndex: 1, // 页码
+            city: "0516", // 兴趣点城市
+            citylimit: true,  //是否强制限制在设置的城市内搜索
+            map: map, // 展现结果的地图实例
+            panel: "result", // 结果列表将在此容器中进行展示。
+            autoFitView: true // 是否自动调整地图视野使绘制的 Marker点都处于视口的可见范围
+        });
+        //多边形查
+        var polygonArr = [//多边形覆盖物节点坐标数组
+            [117.1356380000,34.2092620000],
+            [117.1375260000,34.2120370000],
+            [117.1362810000,34.2131020000],
+            [117.1438210000,34.2218550000],
+            [117.1499570000,34.2203820000],
+            [117.1566520000,34.2189150000],
+            [117.1443780000,34.2060440000],
+            [117.1361280000,34.2089900000]
+
+        ];
+        var polygon = new AMap.Polygon({
+            path: polygonArr,//设置多边形边界路径
+            strokeColor: "#FF33FF", //线颜色
+            strokeOpacity: 0.2, //线透明度
+            strokeWeight: 3,    //线宽
+            fillColor: "#1791fc", //填充色
+            fillOpacity: 0.35//填充透明度
+        });
+        placeSearch.searchInBounds('餐厅', polygon);
+    });
+
+
+
+    }
+
+
+    var button1 = document.getElementById('bt1'); 
+    //定义button2为bt2的DOM元素
+    var listener2 = AMap.event.addDomListener(button1, 'click', search);
+    //给DOM元素：button2，添加“点击”事件监听器，执行search函数的操作
+</script>
+</body>
+</html>

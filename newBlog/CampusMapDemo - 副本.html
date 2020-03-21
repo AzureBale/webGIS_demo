@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>校园地图Demo</title>
+    <link rel="stylesheet" type="text/css" href="css/campusDemo.css"> 
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css"/>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <!-- ↓ 添加工具栏js -->
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+
+<body>
+
+<div id="result"></div>
+<div id="container"></div>
+<div class="info" id="text"> 请点击下方按钮进行操作 </div>
+<div id="panel"></div>
+ 
+<!-- //================界面下方按钮面板================== -->
+
+<!-- /------查询相关按钮----- -->
+<div class="input-card" style="right:40%; width:20%;">
+    <h4>地点查询</h4>
+    <div>
+        <div class="input-item">
+        <button id="bt1" class="btn" onclick="buttonClick();">查询餐饮点</button>
+        <button id="bt2" class="btn" onclick="buttonClick2();">查询教室</button>
+        <button id="bt3" class="btn" onclick="buttonClick3();">查询超市</button>
+        <button id="clickOff" class="btn" style="margin-right:1rem;">清除页面</button>
+
+        </div>
+    </div> 
+</div>
+<!-- -----查询相关按钮-----/ -->
+
+<!-- /------路径绘制相关按钮----- -->
+<div class="input-card" style="right:40%; top:75%; height:10%;width:20%;">
+    <h4>路径规划</h4>
+    <div>
+      <div class="input-item">
+        <button id="clickGet" class="btn" style="margin-right:1rem;">查询任意点的坐标</button>
+        <button id="clickOn" class="btn" style="margin-right:1rem;">绘制任意两点间路径</button>
+   <!-- <button id="clickOffRoute" class="btn" style="margin-right:1rem;">清除路径</button> -->
+      </div>
+    </div>
+</div>
+<!-- /-----路径绘制相关按钮-----/ -->
+
+<!-- ================界面下方按钮==================// -->
+
+
+<!-- ###################添加地图服务js#####################-->
+<!-- ↓ 添加高德基础地图js ↓ -->
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=f4e095be087630133e20de9ce76e2fa8"></script>
+<!-- ↓ 添加步行路线规划的显示面板js ↓ -->
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=f4e095be087630133e20de9ce76e2fa8&plugin=AMap.Walking"></script> 
+<!-- ↓ 添加坐标获取js ↓-->
+<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+<!-- 
+        组合js，功能包括：
+        0.加载地图（同步加载，所以放在了div元素后面）
+        0.5.查询点击处的经纬度坐标
+        1.查询
+        2.任意两点寻路
+        3.页面覆盖元素擦除 -->
+<script src="js/campusDemo.js">
+   
+</script>
+</body>
+</html>
