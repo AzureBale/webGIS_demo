@@ -1,0 +1,320 @@
+html,
+body,
+
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+#panel {
+    position: fixed;
+    background-color: white;
+    max-height: 90%;
+    overflow-y: auto;
+    top: 48%;
+    right: 130px;.
+    width: 280px;
+}
+#panel .amap-call {
+    background-color: #009cf9;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+#panel .amap-lib-walking {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    overflow: hidden;
+}
+
+#panel .amap-lib-driving {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    overflow: hidden;
+}
+#result {
+    margin: 0;
+    padding: 0;
+    z-index: 999;
+    position: absolute;
+    background-color: white;
+    max-height: 100%;
+    overflow-y: auto;
+    top: 0;
+    left: 0;
+    width: 280px;
+}
+
+#searchPanel{
+    padding: 5px;
+    top: 7.62px;
+    left:37%;
+    right:50%; 
+    width:13%;
+    height:10%;
+}
+#search1{
+    border-color: #25A5F7;
+    color: white;
+    background: #25A5F7;
+    border-radius: 0.4rem;
+}
+#search1:hover{
+    border-color: #25A5F7;
+    color: #25A5F7;
+    background: white;
+}
+
+#clickOff{
+    border-color: #E9686B;
+    color: white;
+    background: #E9686B;
+    border-radius: 0.4rem;
+}
+#clickOff:hover{
+    border-color: #E9686B;
+    color: #E9686B;
+    background: white;
+}
+
+#hidePanel{
+    display: flex;
+    right: 15.35px;
+    width: 92.1px;
+    top:344.8px; 
+    height: 36.2px;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    border-color: #E9686B;
+    color: white;
+    background: #E9686B;
+    border-radius: 0.4rem;
+}
+
+#hidePanel:hover{
+    font-weight: 530;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid;
+    border-color: #E9686B;
+    color: #E9686B;
+    background: white;
+ 
+}
+
+#hideResult{
+    display: flex;
+    right: 15.35px;
+    width: 92.1px;
+    top:390.8px; 
+    height: 36.2px;
+
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    border-color: #E9686B;
+    color: white;
+    background: #E9686B;
+    border-radius: 0.4rem;
+}
+#hideResult:hover{
+    font-weight: 530;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid;
+    border-color: #E9686B;
+    color: #E9686B;
+    background: white;
+ 
+}
+
+#hideRoutePanel{
+    display: flex;
+    right: 15.35px;
+    width: 92.1px;
+    top: 434.8px; 
+    height: 36.2px;
+
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    border-color: #E9686B;
+    color: white;
+    background: #E9686B;
+    border-radius: 0.4rem;
+}
+#hideRoutePanel:hover{
+    font-weight: 530;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid;
+    border-color: #E9686B;
+    color: #E9686B;
+    background: white;
+ 
+}
+#clickOn{
+    border-color: #25A5F7;
+    color: white;
+    background: #25A5F7;
+    border-radius: 0.4rem;
+}
+#clickOn:hover{
+    border-color: #25A5F7;
+    color: #25A5F7;
+    background: white;
+}
+#clickGet{
+    border-color: #25A5F7;
+    color: white;
+    background: #25A5F7;
+    border-radius: 0.4rem;
+}
+#clickGet:hover{
+    border-color: #25A5F7;
+    color: #25A5F7;
+    background: white;
+}
+
+#routePanel{
+    padding: 5px;
+    right: 15.35px; 
+    top:220.98px; 
+    height:76.2px;
+    width: 245.6px;
+}
+
+#anySearchPanel{
+     right: 15.35px; 
+     top: 7.62px; 
+     height:76.2px;
+     width:245.6px;
+}
+
+#cleanScreen{
+    display: flex;
+    right: 168.85px;
+    width: 92.1px;
+    top:91.44px; 
+    height: 76.2px;
+}
+
+
+#clickGet{
+    margin: 0;
+}
+#clickOf.btn{
+    margin: 0;
+}
+#search1{
+    margin-left: 1rem;
+}
+#searchPanelKeyword{
+height: 2.6rem;
+padding: 0rem 0.1rem;
+}
+
+#text{
+top: 175.26px;
+min-width: 15.35px;
+width: 245.6px;
+right: 15.35px;
+}
+#textRoute{
+top: 304.8px;
+right: 15.35px;
+min-width: 15.35px;
+width: 245.6px;
+}
+#coordinate{
+    top: 91.44px;
+    right: 15.35px;
+    height: 76.2px;
+    width: 138.15px;
+}
+
+/*#coordinate{
+    top: 12%;
+    right: 15.35px;
+    height: 10%;
+    width: 9%;
+}*/
+/*+++++++*/
+/*
+https://music.163.com/#/song?id=550936829
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}*/
+
+/*.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}*/
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 15%;
+    background-color: #f9f9f9;
+    min-width: 5%;
+    overflow: auto;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+
+
+.dropdown2 {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content2 {
+    display: none;
+    position: absolute;
+    left: 15.35px;
+    background-color: #f9f9f9;
+    min-width: 5%;
+    overflow: auto;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content2 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown2 a:hover {background-color: #f1f1f1}
+
+
+
+.show {display:block;}
+
+#bt0{
+font-family: inherit;
+    line-height: 1.8;
+    font-weight: 300;
+    color: inherit;
+    font-size: 1.1rem;
+}
