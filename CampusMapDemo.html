@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="author" content="YBY">
+	<meta name="description" content="CampusMap with webGIS">
+    <meta name="keywords" content="高德地图JSAPI,CampusMap">
+    <title>校园地图Demo</title>
+    <link rel="stylesheet" type="text/css" href="css/campusDemo.css"> 
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css"/>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!-- ↓ 添加工具栏js -->
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+
+<body>
+<div id="result"></div>
+<div id="container"></div>
+<div class="info" id="textRoute"> 请选择出行方式后进行路线规划</div>
+<div class="info" id="text"> 请点击按钮进行坐标查询 </div>
+<div id="panel"></div>
+ 
+<!-- //================按钮面板================== -->
+
+<!-- /------路径绘制相关按钮----- -->
+<div class="input-card" id="routePanel">
+    <h4>路径规划</h4>
+    <div>
+      <div class="input-item">
+		  <div class="dropdown">
+		        <span> 出行方式</span>
+		        <button onclick="myFunction()" id="dropbtn" class="btn">步行</button>
+		 	  	<div id="myDropdown" class="dropdown-content">    
+				 <a ><button id="walkingBtn" class="btn" onclick="buttonClickWalking();">步行</button></a>
+				 <a ><button id="ridingBtn" class="btn" onclick="buttonClickRiding();">骑行</button></a>
+				 <a ><button id="drivingBtn" class="btn" onclick="buttonClickDriving();">驾车</button></a>
+		        </div>
+			    <button id="clickOn" class="btn">计算最短路径</button>
+		  </div>
+      </div>
+	</div>
+</div>
+
+<!-------- /坐标查询 ------>
+	<div class="input-card" id="coordinate">
+	    <h4>坐标查询</h4>
+	    <div>
+	      <div class="input-item">
+	        <button id="clickGet" class="btn">查询任意点的坐标</button>
+	      </div>
+		</div>
+  </div>
+<!-------- 坐标查询/ ------->
+
+<!-- /------自由查询------- -->
+<div class="input-card" id="anySearchPanel">
+    <!-- <h4 id="headLine">关键词查询</h4> -->
+    <div id="searchPanelKeyword" class="input-item">
+     <span id="bt0" class="btn0" style="margin-right: 2px;">查询</span>        
+     <button id="bt1" class="btn" onclick="buttonClick();">餐饮</button>
+     <button id="bt2" class="btn" onclick="buttonClick2();">博学楼</button>
+     <button id="bt3" class="btn" onclick="buttonClick3();">超市</button>
+
+    <div>
+      <div class="input-item">
+		 <div class="dropdown2">
+		    <button onclick="buttonClickSHowlist()" id="dropbtn2" class="btn">其他</button>
+		 	<div id="myDropdown2" class="dropdown-content2">    
+				<a ><button id="rw1" class="btn" onclick="searchLib();">图书馆</button></a>
+				<a ><button id="rw2" class="btn" onclick="searchGym();">运动场地</button></a>
+				<a ><button id="rw3" class="btn" onclick="searchPark();">停车场</button></a>
+		    </div>
+		 </div>
+      </div>
+	</div>
+    </div>
+
+    <div>
+     <div class="input-item">
+        <input type="text" style="width: 5px;" value="输入关键字" onfocus="if(value!='')value=''" onblur="if(!value)value='输入关键字'" id="textId" class="btn" name="textName">
+        <button id="search1" class="btn" onclick="buttonClickSearch();">查询</button>
+     </div>
+    </div>
+
+</div><!-- class="input-card" id="anySearchPanel" -->
+<!-- ------End自由查询-------/ -->
+
+<!-- /----清除页面 --------->
+<div class="input-card" id="cleanScreen">
+    <h4>页面清除</h4>
+    <div>
+        <div class="input-item">
+        <button id="clickOff" class="btn">清除所有</button>
+        </div>
+    </div> 
+</div>
+<!-- -----清除页面 -----/ -->
+
+<!-- 关闭面板 -->
+<div class="input-card" id="hidePanel">隐藏面板</div>
+<div class="input-card" id="hideResult">隐藏结果</div>
+<div class="input-card" id="hideRoutePanel">关闭导航</div>
+<!-- end 关闭面板 -->
+<!-- ================界面下方按钮==================// -->
+
+
+<!-- ###################添加地图服务js#####################-->
+<!-- ↓ 添加高德基础地图js ↓ -->
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=f4e095be087630133e20de9ce76e2fa8"></script>
+<!-- ↓ 添加步行路线规划的显示面板js作为默认方式 ↓ -->
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=f4e095be087630133e20de9ce76e2fa8&plugin=AMap.Walking"></script> 
+<!-- ↓ 添加骑行行路线规划的显示面板js ↓ -->
+<!-- <script src="https://webapi.amap.com/maps?v=1.4.15&key=f4e095be087630133e20de9ce76e2fa8&plugin=AMap.Riding"></script> -->
+<!-- 上面两种插件会冲突，后添加的插件中的实例化会覆盖掉前一个插件的实例化，导致前一个 Amap.Walking 的实例化失效的 bug -->
+<!-- ↓ 添加 坐标获取 的js插件 ↓-->
+<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+<script src="js/campusDemo.js">
+/*==================Content Menu=============
+此JS脚本中，包括了以下功能和定义：
+ 1.初始化地图对象，加载地图
+ 2.页面清除函数的定义 及 其点击调用函数
+ 3.点击按钮 出现/隐藏 下拉栏
+    3.1屏幕过小时，点击隐藏面板
+ 4.点击地图获取坐标函数 的定义
+ 5.点击地图获取坐标函数 的调用函数
+ 6.三种方式 的 路线规划函数 的 定义：
+    6.1步行
+    6.2骑行
+    6.3驾驶
+ 7.路线规划集成函数 的 定义：
+    //统一三种方式的调用接口
+ 8.出行方式选择 的 点击调用函数
+ 9.路线规划集成函数 的 点击调用函数
+ 10.关键词搜索函数 的 定义
+ 11.关键词搜索函数 的（搜索框输入参数）调用函数
+ 12.关键词搜索函数 的（按钮参数）调用函数
+ 13.关键词搜索函数 的（按钮参数）调用函数 的点击调用函数
+ 14.总结
+ ——Edited by YBY
+===================== End Menu ==============*/
+</script>
+
+</body>
+</html>
